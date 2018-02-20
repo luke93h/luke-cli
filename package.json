@@ -4,7 +4,7 @@
   "description": "Personal Cli",
   "license": "MIT",
   "bin": {
-    "luke": "./bin/luke"
+    "luke": "./bin/luke.js"
   },
   "scripts": {
     "build": "rm -rf lib && babel src --out-dir lib"
