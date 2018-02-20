@@ -1,13 +1,13 @@
 {
   "name": "luke-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Personal Cli",
   "license": "MIT",
   "bin": {
     "luke": "./bin/luke.js"
   },
   "scripts": {
-    "build": "rm -rf lib && babel src --out-dir lib"
+    "build": "babel src --out-dir lib"
   },
   "dependencies": {
     "chalk": "^1.1.3",

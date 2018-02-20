@@ -12,9 +12,8 @@ program
   .option('--demo', 'Generate a dead simple project for quick prototype')
   .option('--no-install', 'Disable npm install after files created')
   .parse(process.argv);
-
+console.log(program.args)
 if (!program.args[0]) {
-  program.help();
 } else {
   const dest = join(process.cwd(), program.args[0]);
   if (existsSync(dest)) {

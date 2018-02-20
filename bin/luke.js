@@ -21,9 +21,6 @@ if (process.argv.slice(2).join('') === '-v') {
     const lukePkg = resolve('node_modules/luke/package.json');
     const lukeVersion = JSON.parse(readFileSync(lukePkg, 'utf-8')).version;
     console.log('    luke version ' + lukeVersion);
-    const roadhogPkg = resolve('node_modules/roadhog/package.json');
-    const roadhogVersion = JSON.parse(readFileSync(roadhogPkg, 'utf-8')).version;
-    console.log('roadhog version ' + roadhogVersion);
   } catch (e) {
   }
   if (!(pkg._from && pkg._resolved)) {
@@ -33,23 +30,21 @@ if (process.argv.slice(2).join('') === '-v') {
 }
 
 program
-  .usage('<command> [options]')
+  .usage('[options]')
   .on('--help', printHelp)
   .parse(process.argv);
 
 const aliases = {
   g: 'generate',
 };
-const args = process.argv.slice(3);
+const args = process.argv.slice(2);
 let subcmd = program.args[0];
 if (aliases[subcmd]) subcmd = aliases[subcmd];
-
 if (!subcmd) {
   program.help();
 } else {
   const bin = executable();
   if (bin) {
-    console.log(bin);
     wrap(spawn(bin, args, {stdio: 'inherit', customFds: [0, 1, 2]}));
   } else {
     program.help();
@@ -69,7 +64,7 @@ function printHelp() {
 }
 
 function executable() {
-  var file = join(__dirname, 'luke-new');
+  var file = join(__dirname, 'luke-new.js');
   if (exists(file)) {
     return file;
   }
