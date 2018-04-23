@@ -1,13 +1,17 @@
 {
   "name": "luke-cli",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "description": "Personal Cli",
   "license": "MIT",
   "bin": {
     "luke": "./bin/luke.js"
   },
   "scripts": {
-    "build": "babel src --out-dir lib"
+    "build": "babel src --out-dir lib",
+    "test1": "node ./bin/luke.js",
+    "test2": "./bin/luke.js --demo test test1",
+    "test3": "./bin/luke.js --demo multile-webpack",
+    "test4": "./bin/luke.js --demo multile-webpack test4"
   },
   "dependencies": {
     "chalk": "^1.1.3",
@@ -52,6 +56,7 @@
     "url": "https://github.com/luke93h/luke-cli/issues"
   },
   "files": [
+    "lib",
     "src",
     "templates",
     "bin"

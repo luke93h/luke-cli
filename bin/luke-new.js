@@ -9,18 +9,21 @@ const error = chalk.red;
 
 program
   .usage('[options] appName')
-  .option('--demo', 'Generate a dead simple project for quick prototype')
+  .option('--demo', 'The template you want to generate')
+  .option('--dest', 'The destination dirname')
   .option('--no-install', 'Disable npm install after files created')
   .parse(process.argv);
-console.log(program.args)
-if (!program.args[0]) {
+if (!program.demo) {
+  console.error(error('Please enter the template you want to generate'));
 } else {
-  const dest = join(process.cwd(), program.args[0]);
+  let dirName = program.args[1] || program.args[0]
+  const dest = join(process.cwd(), dirName);
   if (existsSync(dest)) {
-    console.error(error('Existing directory here, please run new command for an empty folder!'));
+    console.error(error('Existing directory here, please run command for an empty folder!'));
     process.exit(1);
   }
   mkdirpSync(dest);
   process.chdir(dest);
+  console.log(program)
   require('../lib/init')(program);
 }

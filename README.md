@@ -1,3 +1,5 @@
 # luke-cli
 个人用脚手架,用于快速生成各种模板  
-用于快速生成项目模板,本项目基于dva-cli开发，感谢chencheng开源dva-cli。
+脚手架节借鉴于 [dva-cli](https://github.com/dvajs/dva-cli)
+### multiple-webpack
+webpack多页应用

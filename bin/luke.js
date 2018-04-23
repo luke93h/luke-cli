@@ -33,22 +33,12 @@ program
   .usage('[options]')
   .on('--help', printHelp)
   .parse(process.argv);
-
-const aliases = {
-  g: 'generate',
-};
-const args = process.argv.slice(2);
-let subcmd = program.args[0];
-if (aliases[subcmd]) subcmd = aliases[subcmd];
-if (!subcmd) {
-  program.help();
+const args = program.args
+const bin = executable();
+if (bin) {
+  wrap(spawn(bin, args, {stdio: 'inherit', customFds: [0, 1, 2]}));
 } else {
-  const bin = executable();
-  if (bin) {
-    wrap(spawn(bin, args, {stdio: 'inherit', customFds: [0, 1, 2]}));
-  } else {
-    program.help();
-  }
+  program.help();
 }
 
 function wrap(sp) {

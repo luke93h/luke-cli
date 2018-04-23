@@ -18,10 +18,10 @@ function success(message) {
   console.error(chalk.green(message));
 }
 
-function init({ demo, install }) {
-  const type = demo ? 'test' : '';
+function init({ demo, install, dest: dirname }) {
+  const type = demo || 'test'
   const cwd = join(__dirname, '../templates', type);
-  const dest = process.cwd();
+  const dest = join(process.cwd(), dirname);
   const projectName = basename(dest);
 
   if (!emptyDir(dest)) {
@@ -29,7 +29,7 @@ function init({ demo, install }) {
     process.exit(1);
   }
 
-  console.log(`Creating a new Dva app in ${dest}.`);
+  console.log(`Creating a new ${type} app in ${dest}.`);
   console.log();
 
   vfs.src(['**/*', '!node_modules/**/*'], {cwd: cwd, cwdbase: true, dot: true})
