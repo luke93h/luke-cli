@@ -1,5 +1,8 @@
 #!/usr/bin/env node
-'use strict';
+
+/**
+ * Module dependencies.
+ */
 const chalk = require('chalk');
 const program = require('commander');
 const spawn = require('win-spawn');
@@ -32,8 +35,11 @@ if (process.argv.slice(2).join('') === '-v') {
 program
   .usage('[options]')
   .on('--help', printHelp)
+  .option('--demo', 'The template you want to generate')
+  .option('--dest', 'The destination dirname')
   .parse(process.argv);
 const args = program.args
+console.log(1, args)
 const bin = executable();
 if (bin) {
   wrap(spawn(bin, args, {stdio: 'inherit', customFds: [0, 1, 2]}));

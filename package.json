@@ -8,8 +8,8 @@
   },
   "scripts": {
     "build": "babel src --out-dir lib",
-    "test1": "node ./bin/luke.js",
-    "test2": "./bin/luke.js --demo test test1",
+    "test1": "/bin/luke.js",
+    "test2": "./bin/luke.js --demo test test1 --demo=test1",
     "test3": "./bin/luke.js --demo multile-webpack",
     "test4": "./bin/luke.js --demo multile-webpack test4"
   },

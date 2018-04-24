@@ -13,7 +13,7 @@ program
   .option('--dest', 'The destination dirname')
   .option('--no-install', 'Disable npm install after files created')
   .parse(process.argv);
-if (!program.demo) {
+if (!program.args[0]) {
   console.error(error('Please enter the template you want to generate'));
 } else {
   let dirName = program.args[1] || program.args[0]
