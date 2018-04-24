@@ -7,8 +7,8 @@
     luke --demo=multiple-webpack --dest=app --no-install
 ```
 ### 参数说明
---demo 选择需要复制的代码
---dest 输入想要输出的路径
---no-install 复制完后是否自动npm intall，默认true
+--demo 选择需要复制的代码  
+--dest 输入想要输出的路径  
+--no-install 复制完后是否自动npm intall，默认true  
 ### multiple-webpack
 webpack多页应用
