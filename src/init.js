@@ -1,10 +1,11 @@
 import { join, basename } from 'path';
 import vfs from 'vinyl-fs';
-import { renameSync } from 'fs';
+import { renameSync, readdirSync } from 'fs';
 import through from 'through2';
 import { sync as emptyDir } from 'empty-dir';
 import leftPad from 'left-pad';
 import chalk from 'chalk';
+const existsSync = require('fs').existsSync;
 
 function info(type, message) {
   console.log(`${chalk.green.bold(leftPad(type, 12))}  ${message}`);
@@ -23,12 +24,15 @@ function init({ demo, install, dest: dirname }) {
   const cwd = join(__dirname, '../templates', type);
   const dest = join(process.cwd());
   const projectName = basename(dest);
-  console.log(dest, emptyDir(dest))
+  const files = readdirSync(join(__dirname, '../templates'))
   if (!emptyDir(dest)) {
     error('Existing files here, please run init command in an empty folder!');
     process.exit(1);
   }
-
+  if (!existsSync(cwd)) {
+    console.error(error(`Don exit this template, please choose one of: ${files.join(', ')}`));
+    process.exit(1);
+  }
   console.log(`Creating a new ${type} app in ${dest}.`);
   console.log();
 
@@ -51,8 +55,6 @@ Success! Created ${projectName} at ${dest}.
 
 Inside that directory, you can run several commands:
   * npm start: Starts the development server.
-  * npm run build: Bundles the app into dist for production.
-  * npm test: Run test.
 
 We suggest that you begin by typing:
   cd ${dest}

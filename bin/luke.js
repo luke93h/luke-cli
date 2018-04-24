@@ -48,7 +48,7 @@ let src = program.demo
 let dest = program.dest || src
 const bin = executable();
 if (bin) {
-  wrap(spawn(bin, [ dest, src, program.install ], {stdio: 'inherit', customFds: [0, 1, 2]}));
+  wrap(spawn(bin, [ src, dest, program.install ], {stdio: 'inherit', customFds: [0, 1, 2]}));
 } else {
   program.help();
 }

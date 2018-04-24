@@ -10,7 +10,6 @@ const error = chalk.red;
 program
   .parse(process.argv)
   let dirName = program.args[1]
-  console.log(dirName)
   const dest = join(process.cwd(), dirName);
   if (existsSync(dest)) {
     console.error(error('Existing directory here, please run command for an empty folder!'));
@@ -21,5 +20,5 @@ program
   require('../lib/init')({
     demo: program.args[0],
     dest: program.args[1],
-    install: program.args[2]
+    install: program.args[2] === 'true'
   });
