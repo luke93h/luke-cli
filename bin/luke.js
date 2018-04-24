@@ -35,14 +35,20 @@ if (process.argv.slice(2).join('') === '-v') {
 program
   .usage('[options]')
   .on('--help', printHelp)
-  .option('--demo', 'The template you want to generate')
-  .option('--dest', 'The destination dirname')
+  .option('--demo <demo>', 'The template you want to generate')
+  .option('--dest <dest>', 'The destination dirname')
   .parse(process.argv);
 const args = program.args
-console.log(1, args)
+if(!program.demo){
+  console.error(error('Please enter the template you want to generate'));
+  return
+}
+let src = program.demo
+let dest = program.dest || src
+console.log(src, dest)
 const bin = executable();
 if (bin) {
-  wrap(spawn(bin, args, {stdio: 'inherit', customFds: [0, 1, 2]}));
+  wrap(spawn(bin, [ dest, src ], {stdio: 'inherit', customFds: [0, 1, 2]}));
 } else {
   program.help();
 }
