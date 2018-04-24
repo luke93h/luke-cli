@@ -21,9 +21,9 @@ function success(message) {
 function init({ demo, install, dest: dirname }) {
   const type = demo || 'test'
   const cwd = join(__dirname, '../templates', type);
-  const dest = join(process.cwd(), dirname);
+  const dest = join(process.cwd());
   const projectName = basename(dest);
-
+  console.log(dest, emptyDir(dest))
   if (!emptyDir(dest)) {
     error('Existing files here, please run init command in an empty folder!');
     process.exit(1);
@@ -36,8 +36,6 @@ function init({ demo, install, dest: dirname }) {
     .pipe(template(dest, cwd))
     .pipe(vfs.dest(dest))
     .on('end', function() {
-      info('rename', 'gitignore -> .gitignore');
-      renameSync(join(dest, 'gitignore'), join(dest, '.gitignore'));
       if (install) {
         info('run', 'npm install');
         require('./install')(printSuccess);

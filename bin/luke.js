@@ -37,6 +37,7 @@ program
   .on('--help', printHelp)
   .option('--demo <demo>', 'The template you want to generate')
   .option('--dest <dest>', 'The destination dirname')
+  .option('--no-install', 'Disable npm install after files created')
   .parse(process.argv);
 const args = program.args
 if(!program.demo){
@@ -45,10 +46,9 @@ if(!program.demo){
 }
 let src = program.demo
 let dest = program.dest || src
-console.log(src, dest)
 const bin = executable();
 if (bin) {
-  wrap(spawn(bin, [ dest, src ], {stdio: 'inherit', customFds: [0, 1, 2]}));
+  wrap(spawn(bin, [ dest, src, program.install ], {stdio: 'inherit', customFds: [0, 1, 2]}));
 } else {
   program.help();
 }
