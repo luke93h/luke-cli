@@ -1,6 +1,6 @@
 {
   "name": "luke-cli",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Personal Cli",
   "license": "MIT",
   "bin": {
@@ -9,9 +9,6 @@
   "scripts": {
     "build": "babel src --out-dir lib",
     "test1": "babel src --out-dir lib && node ./bin/luke.js --demo test --dest a",
-    "test2": "./bin/luke.js --demo test test1 --demo=test1",
-    "test3": "./bin/luke.js --demo multile-webpack",
-    "test4": "./bin/luke.js --demo multile-webpack test4"
   },
   "dependencies": {
     "chalk": "^1.1.3",
