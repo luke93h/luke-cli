@@ -1,4 +1,4 @@
-# 亿保数据大屏
+# webpack多页应用
 ### 运行项目
 ``` javascript
     npm install
